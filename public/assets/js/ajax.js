@@ -16,6 +16,17 @@ $('.purchaseCoupon').on('click', function(e){
 	});
 });
 
+function checkEmail(email){
+  if (typeof(email) == 'undefined' || email==null) {
+    return false;
+  }
+  var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+      return false;
+    } 
+    return true;
+}
 
 
 //Create user client side validation
@@ -25,4 +36,7 @@ $('create-user-form').on('click', function(){
 
 	var email = $('#email').val().trim();
 	var userName = $('#userName').val.trim();
+	if (!checkEmail) {
+		
+	}
 })

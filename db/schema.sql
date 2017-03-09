@@ -1,8 +1,5 @@
 -- ### Schema
 
--- # user has many coupons 
--- # coupon has many users 
-
 -- # users table
 -- 	# id
 -- 	# email
@@ -10,9 +7,6 @@
 -- 	# username
 --  # type- child/Caregiver
 
-	-- 1 tyler
-	-- 2 rhyna
-	-- 3 andrew
 
 -- # children table
 --  # id
@@ -60,15 +54,13 @@ CREATE TABLE users
 CREATE TABLE children
 (
 	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	company_name varchar(255) NOT NULL,
 	basal decimal(5, 3) NOT NULL,
 	morning_bolus decimal(5, 3) NOT NULL,
 	noon_bolus decimal(5, 3) NOT NULL,
 	night_bolus decimal(5, 3) NOT NULL,
 	child_user_id INT NOT NULL,
 	primary_caregiver_id INT NOT NULL, 
-	FOREIGN KEY (child_user_id) references users(id),
-	FOREIGN KEY (primary_caregiver_id) references users(id)
+	FOREIGN KEY (child_user_id) references users(id)
 
 );
 
