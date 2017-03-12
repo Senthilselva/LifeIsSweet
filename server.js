@@ -1,39 +1,93 @@
+var _ = require("lodash");
 var express = require("express");
 var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
+var jwt = require("jsonwebtoken");
 
-var port = 3000;
+var passport = require("passport");
+var passportJwt = require("passport-jwt");
+
+var ExtractJwt = passportJwt.ExtractJwt;
+var JwtStrategy = passportJwt.Strategy;
+
+var users = [
+{
+	id: 1,
+	name: 'senthil',
+	password: "test"
+},
+{
+	id: 2,
+	name: 'stef',
+	password:"test"
+}]
+
+var jwtOptions ={};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+
+jwtOptions.secretOrKey = "rock";
+//console.log("user1: ", users[_.findIndex(users, {id:1})])
+
+var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next){
+	console.log("payload received", jwt_payload);
+
+	//TODO : This should be a database call
+	var user = users[_.findIndex(users, {id:jwt_payload.id})];
+
+	if(user){
+		next(null,user);
+	} else {
+		next(null,false);
+	}
+
+});
+
+passport.use(strategy);
+
+//TODO: 
+
 
 var app = express();
-var cookieParser = require('cookie-parser');
+app.use(passport.initialize());
 
-var session = require('express-session');
-//allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*1000 }}));
-app.use(cookieParser());
+//parse appliacation/ x-www-from-urlencoded
+//for easier testing the Postman or plain HTML forms
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + "/public"));
+app.use(bodyParser.urlencoded({
+	extended: true
+}))
 
-app.use(bodyParser.urlencoded({ extended: false }));
+//parse application/json
+app.use(bodyParser.json())
 
-// Override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
+app.get("/", function(req, res){
+	res.json({message:"Express is up!"})
+});
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
+app.post("/login", function(req,res){
+	if(req.body.name && req.body.password){
+		var name= req.body.name;
+		var password = req.body.password;
+	}
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+	//TODO: database call
+	var user = users[_.findIndex(users, {name: name})];
+	if(!user){
+		res.status(401).json({message:"no such user found"});
+	}
 
-// Import routes and give the server access to them.
-var applicationController = require("./controllers/applicationController.js");
-var usersController = require("./controllers/usersController.js");
+	if(user.password === req.body.password){
+		var payload = {id: user.id};
+		var token = jwt.sign(payload, jwtOptions.secretOrKey);
+		res.json({message: "ok", token: token});
+	} else {
+		res.status(401).json({message: "passwords did not match"});
+	}
+});
 
+app.get("/secret", passport.authenticate('jwt', { session: false }), function(req, res){
+  res.json("Success! You can not see this without a token");
+});
 
-app.use("/", applicationController);
-app.use("/users", usersController);
-
-
-
-app.listen(port);
+app.listen(3000, function() {
+  console.log("Express running");
+});
