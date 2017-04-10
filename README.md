@@ -2,4 +2,4 @@
 
 
 
-Technologies used: Express.js (routing), React.js, Redux.js, MySql, 
+Technologies used: Express.js (routing), React.js, Redux.js, Mongo, 

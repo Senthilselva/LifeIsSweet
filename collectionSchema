@@ -1,0 +1,26 @@
+-- ### Schema
+
+-- # users table
+-- 	# id
+-- 	# password
+-- 	# name
+--  # type- child/Caregiver
+
+
+-- # children table
+--  # id
+--  # userId
+--  # basal [prefer if it is an array]
+--  # morningbolus [array]
+--  # afternoonbolus [array]
+--  # dinnerbolus [array]
+--  # array of chats
+
+
+-- # child_caregivers table
+--  # id
+--  # user_id //child  
+--  # user_id // caregivers
+--  # action_user_id
+
+
