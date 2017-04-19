@@ -6,7 +6,6 @@
 -- 	# name
 --  # type- child/Caregiver
 
-
 -- # children table
 --  # id
 --  # userId
@@ -19,8 +18,7 @@
 
 -- # child_caregivers table
 --  # id
---  # user_id //child  
---  # user_id // caregivers
---  # action_user_id
+--  # child_id //child  
+--  # caregiver_id // caregivers
 
 
