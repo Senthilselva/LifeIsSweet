@@ -1,15 +1,12 @@
 var express = require('express');
 var router  = express.Router();
-var mysql = require('mongoose')
+var mongoose = require('mongoose')
 var User   = require('../models/user'); // get our mongoose model
 
 var jwt    = require('jsonwebtoken');
 var config = require('../config'); 
-// TODO: route to authenticate a user (POST http://localhost:8080/api/authenticate)
+mongoose.Promise = Promise;
 
-// TODO: route middleware to verify a token
-
-// route to show a random message (GET http://localhost:8080/api/)
 router.get('/', function(req, res) {
   res.json({ message: 'Welcome to the coolest API on earth!' });
 });
@@ -59,6 +56,35 @@ router.post('/authenticate', function(req, res) {
   });
 });
 
+router.post('/create', function(req, res) {
+  console.log("creating")
+  console.log(req.body);
+     // find the user
+     let newUser =  new User(req.body);
+  User.findOne({
+    name: req.body.name
+  }, function(err, user) {
+
+    if (err) throw err;
+    if (user) {
+      res.json({ success: false, message: 'User name already exist' });
+    } else {
+      console.log(newUser);
+      
+      newUser.save(function(err, data) {
+        if (err) {
+          console.log(err.errors)
+          res.json({ err: err.errors.message });
+        } else {
+          console.log(data)
+          console.log('User saved successfully');
+          //console.log(data);
+        res.json({ success: true });
+      }
+      });
+    }
+  })
+});
 
 router.use(function(req, res, next) {
 
