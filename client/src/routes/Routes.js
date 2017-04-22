@@ -6,6 +6,7 @@ import {
 import Nav from '../components/Nav'
 import App from '../App'
 import SignUp from '../components/SignUp'
+import SignIn from '../components/SignIn'
 import Dashboard from '../components/Dashboard'
 
 const Routes= (props) => (
@@ -14,6 +15,7 @@ const Routes= (props) => (
 		<Nav />
 		<Route exact path="/" component={App} />
 		<Route path="/signup" component={SignUp} />
+		<Route path="/signin" component={SignIn} />
 		<Route path="/dashboard" component={Dashboard} />
 	</div>
 </Router>

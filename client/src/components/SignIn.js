@@ -1,16 +1,15 @@
 import '../App.css';
 import React, { Component } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import {__createUser} from '../lib/LISservice';
+import {__getUser} from '../lib/LISservice';
 
-class SignUp extends Component {
+class SignIn extends Component {
 	constructor(props) {
 	super(props);
 
 	this.state = {
 	    name:"",
-	    password:"",
-	    child:0,
+	    password:""
 	};
 
 	    this._handleChange = this._handleChange.bind(this);
@@ -20,11 +19,11 @@ class SignUp extends Component {
     _handleSubmit(event) {
         event.preventDefault();
         console.log("CLICK");
-        var newUser = this.state;
+        var user = this.state;
         
-        __createUser(newUser)
-         .then(user => {
-          console.log(user);
+        __getUser(user)
+         .then(userData => {
+          console.log(userData);
          })
     }
 
@@ -60,18 +59,7 @@ class SignUp extends Component {
                    placeholder="Enter your Password" />
           </Col>
         </FormGroup>
-        <FormGroup row>
-          <Label for="isChild" sm={2}>Child</Label>
-          <Col sm={10}>
-            <Input type="select" 
-                   name="select" 
-                   id="isChild"
-                   onChange={this._handleChange}>
-            <option>Child</option>
-            <option>Care Taker</option>
-            </Input>
-          </Col>
-        </FormGroup>
+
         <FormGroup check row>
           <Col sm={{ size: 10, offset: 2 }}>
             <Button>Submit</Button>
@@ -82,4 +70,4 @@ class SignUp extends Component {
 	}//render
 }
 
-export default SignUp;
+export default SignIn;

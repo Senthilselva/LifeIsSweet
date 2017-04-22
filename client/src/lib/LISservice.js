@@ -11,3 +11,15 @@ export const __createUser = (user) => {
     body: JSON.stringify(user)
   }).then(res => res.json())
 }
+
+export const __getUser = (user) => {
+	console.log("createUser")
+	return fetch(`${baseUrl}/authenticate`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  }).then(res => res.json())
+}
