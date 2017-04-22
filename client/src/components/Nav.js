@@ -31,7 +31,7 @@ export default class Example extends React.Component {
           <img src={logo} className="Nav-logo" alt="logo" />
            Life Is Sweet
           </NavbarBrand>
-          <Collapse isOpen= {this.state.isOpen} navbar>
+          <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink exact to="/"> Home </NavLink>
