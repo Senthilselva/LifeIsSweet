@@ -30,8 +30,9 @@ class SignUp extends Component {
         __createUser(newUser)
          .then(user => {
           console.log(user);
-          if(user.childData.success){
-           
+          if(user.success){
+            console.log(this.props);
+            this.props.history.push('/dashboard');
           }
          })
     }
