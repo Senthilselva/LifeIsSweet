@@ -8,7 +8,7 @@ class Nav extends Component {
   render() {
     
     return (
-        <nav>
+        <nav style>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to='/signup'>Sign Up</NavLink>
           <NavLink to='/signIn'>Sign In</NavLink>

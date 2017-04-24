@@ -8,7 +8,6 @@ class Dashboard extends Component {
 
     return (
       <div className="App">
-	      Dashboard
 	      {/*<ChildView />*/}
 	      <CaretakerView />
       </div>
