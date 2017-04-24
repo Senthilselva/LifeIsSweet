@@ -35,7 +35,7 @@ var childSchema = new Schema({
 
 
 // Use the above schema to make the User model
-var Child = mongoose.model("Child", ChildSchema);
+var Child = mongoose.model("Child", childSchema);
 
 // Export the model so the server can use it
 module.exports = Child;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import {
   NavLink
@@ -31,11 +31,15 @@ export default class Example extends React.Component {
           <img src={logo} className="Nav-logo" alt="logo" />
            Life Is Sweet
           </NavbarBrand>
-          <Collapse isOpen= {this.state.isOpen} navbar>
+          <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink exact to="/"> Home </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink to='/signup'> Sign Up </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink to='/signIn'> Sign In </NavLink>
               </NavItem>
               <NavItem>

@@ -12,7 +12,9 @@ var CareTakerSchema = new Schema({
     trim: true,
     required: "First Name is Required"
   },
-  // userCreated: the current date
+  phone: {
+    type: String
+  },
   userCreated: {
     type: Date,
     default: Date.now
@@ -25,7 +27,7 @@ var CareTakerSchema = new Schema({
 
 
 // Use the above schema to make the User model
-var s = mongoose.model("s", CareTakerSchema);
+var CareTaker = mongoose.model("CareTaker", CareTakerSchema);
 
 // Export the model so the server can use it
-module.exports = User;
+module.exports = CareTaker;

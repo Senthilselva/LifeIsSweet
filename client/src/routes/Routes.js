@@ -6,6 +6,8 @@ import {
 import Nav from '../components/Nav'
 import App from '../App'
 import SignUp from '../components/SignUp'
+import SignUpChild from '../components/SignUpChild'
+import SignUpCareTaker from '../components/SignUpCareTaker'
 import SignIn from '../components/SignIn'
 import Dashboard from '../components/Dashboard'
 
@@ -15,6 +17,8 @@ const Routes= (props) => (
 		<Nav />
 		<Route exact path="/" component={App} />
 		<Route path="/signup" component={SignUp} />
+		<Route path="/signupchild" component={SignUpChild} />
+		<Route path="/signupcaretaker" component={SignUpCareTaker} />
 		<Route path="/signin" component={SignIn} />
 		<Route path="/dashboard" component={Dashboard} />
 	</div>
