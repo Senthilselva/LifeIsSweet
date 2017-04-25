@@ -2,6 +2,8 @@ import '../App.css';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
+import Heading from './common/Heading';
 import {__getUser} from '../lib/LISservice';
 
 class SignIn extends Component {
@@ -42,7 +44,11 @@ class SignIn extends Component {
     
 //render- function
 render() {
-  let signInForm = <Form onSubmit={this._handleSubmit}>
+  let signInForm = 
+          <div>
+            <Heading heading={"Sign In Form"} />
+            <div className="App-body">
+            <Form onSubmit={this._handleSubmit}>
                     <FormGroup row>
                       <Label for="name" sm={2}>Name</Label>
                       <Col sm={10}>
@@ -72,8 +78,9 @@ render() {
                     </FormGroup>
 
                   </Form>
+                </div>
 
-
+</div>
 
       if(this.state.redirect) {
         return <Redirect to='/dashboard'/>;

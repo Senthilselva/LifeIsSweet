@@ -1,17 +1,17 @@
 .App {
   text-align: center;
-  
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 50px;
+  height: 30px;
 }
 
 .App-header {
   background-color: #222;
   height: 200px;
-  margin-bottom: 1px;
+  /*padding: 20px;*/
+  width:100%;
   color: white;
 }
 
@@ -28,7 +28,7 @@
     background: url("lis_bg.png") no-repeat center center ;
     height: 800px;
     width:100%;
-    color: white;
+    color: black;
     opacity: .8;
   -webkit-background-size: cover;
   -moz-background-size: cover;

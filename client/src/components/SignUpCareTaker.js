@@ -2,6 +2,8 @@ import '../App.css';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
+import Heading from './common/Heading';
 import {__createUser} from '../lib/LISservice';
 
 class SignUp extends Component {
@@ -45,7 +47,10 @@ class SignUp extends Component {
 //render- function
 	render() {
     return (
-      <div>
+
+      <div className ="App">
+      <Heading heading={"Care Taker Sign Up"} />
+
       <Form onSubmit={this._handleSubmit}>
         <FormGroup row>
           <Label for="name" sm={2}>Name</Label>
