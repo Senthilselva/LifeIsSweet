@@ -23,3 +23,15 @@ export const __getUser = (user) => {
     body: JSON.stringify(user)
   }).then(res => res.json())
 }
+
+export const __downLoadFile = (image,filename ) => {
+  console.log("image");
+  console.log(image);
+  var formData = new FormData();
+  formData.append('photo', image);
+  return fetch(`/uploadUserImage/${filename}`, {
+    method: 'POST',
+    body: formData
+  }).then(res => res.json())
+
+}

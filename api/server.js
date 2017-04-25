@@ -54,6 +54,41 @@ app.get('/setup', function(req, res) {
 
 app.use('/user', user_controller);
 
+//==================================================
+//for storing picture
+//+==========================================
+var multer = require("multer");
+ 
+var storage = multer.diskStorage({
+        destination: './public/users',
+        filename: function (req, file, cb) {
+          let ext
+          console.log("ppppppppppppppppppp"+file.mimetype)
+            switch (file.mimetype) {
+                case 'image/jpeg':
+                    ext = '.jpeg';
+                    break;
+                case 'image/png':
+                    ext = '.png';
+                    break;
+            }
+            cb(null, file.originalname + ext);
+        }
+    });
+
+var upload = multer({storage: storage});
+
+app.use(upload.single('photo'));
+
+app.post('/uploadUserImage/:name', function (req, res) {
+    // console.log(JSON.stringify(req.body.photo)) // form fields
+    console.log(JSON.stringify(req.body)) // form fields
+    console.log(req.photo) // form files
+    console.log(req.file) // form files
+    res.send(req.body.photo);
+});
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // =======================
 // start the server ======
 // =======================

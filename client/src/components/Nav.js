@@ -40,6 +40,8 @@ export default class Example extends React.Component {
               
                 <NavLink to='/signin'> Sign In |</NavLink>
               
+                <NavLink to='/downloadfile'> Download File |</NavLink>
+
                 <NavLink to='/dashboard'> Dashboard </NavLink>
               </NavItem>
             </Nav>

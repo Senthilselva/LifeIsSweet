@@ -10,6 +10,7 @@ import SignUpChild from '../components/SignUpChild'
 import SignUpCareTaker from '../components/SignUpCareTaker'
 import SignIn from '../components/SignIn'
 import Dashboard from '../components/Dashboard'
+import DownloadFile from '../components/DownloadFile'
 
 const Routes= (props) => (
 <Router>
@@ -21,6 +22,7 @@ const Routes= (props) => (
 		<Route path="/signupcaretaker" component={SignUpCareTaker} />
 		<Route path="/signin" component={SignIn} />
 		<Route path="/dashboard" component={Dashboard} />
+		<Route path="/downloadfile" component={DownloadFile} />
 	</div>
 </Router>
 )

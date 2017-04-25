@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import Heading from './common/Heading';
+import DownloadFile from './DownloadFile';
 import {__createUser} from '../lib/LISservice';
 
 class SignUp extends Component {
@@ -50,7 +51,7 @@ class SignUp extends Component {
 //render- function
 	render() {
     return (
-      <div className ="App">
+      <div>
       <Heading heading={"Sign Up Your Child"} />
       <Form onSubmit={this._handleSubmit}>
         <FormGroup row>
@@ -115,6 +116,13 @@ class SignUp extends Component {
                    id="dinnerbolus" 
                    onChange={this._handleChange}
                    placeholder="Dinner Bolus" />
+          </Col>
+        </FormGroup>
+
+        <FormGroup row>
+          <Label for="" sm={2}>Picture</Label>
+          <Col sm={10}>
+            <DownloadFile filename={this.state.name} />
           </Col>
         </FormGroup>
 
