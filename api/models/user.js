@@ -21,8 +21,12 @@ module.exports = mongoose.model('User', new Schema({
 	      "Password should be longer."
 	    ]
   },
-    child: {
+  child: { //this is a flag SS
     	type: Boolean,
     	required: "Specify if you are a child" 
+  },
+  partners:{
+  	  type: Array //Check 
   }
+
 }));

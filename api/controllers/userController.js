@@ -1,7 +1,12 @@
 var express = require('express');
 var router  = express.Router();
 var mongoose = require('mongoose')
+
+
 var User   = require('../models/user'); // get our mongoose model
+var Child   = require('../models/child');
+var CareTaker   = require('../models/caretaker');
+
 
 var jwt    = require('jsonwebtoken');
 var config = require('../config'); 
@@ -78,10 +83,43 @@ router.post('/create', function(req, res) {
         } else {
           console.log(data)
           console.log('User saved successfully');
-          //console.log(data);
-        res.json({ success: true });
-      }
-      });
+          //if the user is a child
+            if(data.child){
+              let newChild = new Child({});
+              newChild.name = req.body.name;
+              newChild.morningbolus = parseInt(req.body.morningbolus);
+              newChild.afternoonbolus = parseInt(req.body.afternoonbolus);
+              newChild.dinnerbolus = parseInt(req.body.dinnerbolus);
+
+              newChild.save(function(err,childData){
+                if (err){
+                  console.log(err.errors)
+                  res.json({ err: err.errors.message });
+                }
+                else{
+                  res.json({ success : true, 
+                              childData });
+                }
+              }); 
+            } else {
+              //if the user is a caretaker
+              let newCareTaker = new CareTaker({});
+              newCareTaker.name = req.body.name;
+              newCareTaker.phone = req.body.name;
+
+              newCareTaker.save(function(err,careTaker){
+                if(err){
+                  console.log(err.errors)
+                  res.json({ err: err.errors.message });
+                }
+                else{
+                  res.json({ success:true,
+                             careTaker });
+                }
+              }); //newCareTaker
+            }
+        }
+      }); //newUser
     }
   })
 });
