@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -10,7 +11,7 @@
 .App-header {
   background-color: #222;
   height: 200px;
-  padding: 20px;
+  margin-bottom: 1px;
   color: white;
 }
 
@@ -22,3 +23,35 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.App-body {
+  background-color: #000000;
+    background: url("lis_bg.png") no-repeat center center ;
+    height: 800px;
+    width:100%;
+    color: white;
+    opacity: .8;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.dashboard-body {
+  background-color: #000000;
+    background: url("lis_bg.png") no-repeat center center ;
+    height: 800px;
+    width: 75%;
+    float:right;
+    color: white;
+    opacity: .4;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.jumbotron {
+    background-color:#000 !important; 
+    color: #ffffff;
+ 
+}
+
