@@ -40,7 +40,7 @@ export default class Example extends React.Component {
                 <NavLink to='/signup'> Sign Up </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to='/signIn'> Sign In </NavLink>
+                <NavLink to='/signin'> Sign In </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to='/dashboard'> Dashboard </NavLink>
