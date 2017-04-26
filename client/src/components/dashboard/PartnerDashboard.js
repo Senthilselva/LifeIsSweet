@@ -1,5 +1,4 @@
 import '../../App.css';
-import './Dashboard.css';
 import Heading from '../common/Heading';
 import React, { Component } from 'react';
 import PartnerList from './PartnerList';
