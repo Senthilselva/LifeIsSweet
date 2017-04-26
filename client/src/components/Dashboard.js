@@ -1,6 +1,6 @@
 import '../App.css';
 import React, { Component } from 'react';
-import CaretakerView from './CaretakerView';
+import PartnerDashboard from './dashboard/PartnerDashboard';
 
 class Dashboard extends Component {
 	
@@ -9,7 +9,7 @@ class Dashboard extends Component {
     return (
       <div className="App">
 	      {/*<ChildView />*/}
-	      <CaretakerView />
+	      <PartnerDashboard heading="Caretaker"/>
       </div>
     );
   }
