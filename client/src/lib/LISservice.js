@@ -33,5 +33,4 @@ export const __downLoadFile = (image,filename ) => {
     method: 'POST',
     body: formData
   }).then(res => res.json())
-
 }

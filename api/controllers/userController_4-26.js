@@ -48,30 +48,14 @@ router.post('/authenticate', function(req, res) {
           expiresIn: 1440 // expires in 24 hours
         });
 
-          success = true;
-          message = 'Enjoy your token!';
-          token = token;
-
-        if(user.child){
-          Child.findOne({
-            name: req.body.name
-          }, function(err, childData){
-             if (err) throw err;
-             var sendMess = { success, message, token, user, childData }
-             console.log(sendMess)
-             res.json(sendMess);
-          });
-        } else {
-          CareTaker.findOne({
-            name: req.body.name
-          }, function(err, caretakerData){
-             if (err) throw err;
-             var sendMess = { success, message, token, user, caretakerData }
-             console.log(sendMess)
-             res.json(sendMess);
-          });
-        }
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
       }   
+
     }
 
   });
@@ -113,7 +97,8 @@ router.post('/create', function(req, res) {
                   res.json({ err: err.errors.message });
                 }
                 else{
-                  res.json({ success : true });
+                  res.json({ success : true, 
+                              childData });
                 }
               }); 
             } else {
@@ -128,7 +113,8 @@ router.post('/create', function(req, res) {
                   res.json({ err: err.errors.message });
                 }
                 else{
-                  res.json({ success:true });
+                  res.json({ success:true,
+                             careTaker });
                 }
               }); //newCareTaker
             }

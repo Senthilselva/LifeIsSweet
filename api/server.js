@@ -63,7 +63,7 @@ var storage = multer.diskStorage({
         destination: './public/users',
         filename: function (req, file, cb) {
           let ext
-          console.log("ppppppppppppppppppp"+file.mimetype)
+          console.log(file.mimetype)
             switch (file.mimetype) {
                 case 'image/jpeg':
                     ext = '.jpeg';
