@@ -1,7 +1,7 @@
 import '../../App.css';
 import React, { Component } from 'react';
-//import { ListGroup, ListGroupItem } from 'reactstrap';
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
+import styled from 'styled-components';
 
 class PartnerList extends Component {
 	constructor(props) {
@@ -18,13 +18,18 @@ class PartnerList extends Component {
 	}
 
 	//specify the base color/background of the parent container if needed 
-	sideNav() {
+	_sideNav() {
+		const Title = styled.div`
+		    padding: 12px;
+		    padding-left: 55px;
+		    color: lightblue;
+		    background: grey;    
+		`;
+
 		return (
 			<div style={{background: '#2c3e50 ', color: '#FFF', width: 220}}>
 				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' defaultSelected='sales'>      
-					<Nav id="0">
-						<NavText> My Partners </NavText>
-					</Nav>
+					<Title> My Partners! </Title>
 					{
 					this.state.partners.map(function(partner){
 						return(
@@ -42,8 +47,8 @@ class PartnerList extends Component {
 	render() {
 
 		return (
-			<div className="App">
-				{this.sideNav()}
+			<div>
+				{this._sideNav()}
 			</div>
 		);
 

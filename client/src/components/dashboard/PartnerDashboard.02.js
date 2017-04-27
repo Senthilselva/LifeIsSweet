@@ -5,9 +5,6 @@ import { Container, Row, Col } from 'reactstrap';
 import PartnerList from './PartnerList';
 import MessageList from './MessageList';
 
-import '../Dashboard.css';
-import { Flex, Layout, Fixed } from 'react-layout-pane';
-
 class PartnerDashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -20,27 +17,18 @@ class PartnerDashboard extends Component {
 	render() {
 
 		return (
-			<Layout type="column">
+			<div>
 				<Heading heading={this.props.heading} />
-				<Flex>
-					<Layout type="row">
-						<Fixed className="sidebar">
-							<Layout type="column">
-								<Fixed>
-									My Partners
-								</Fixed>
-								<Flex>
-									<PartnerList className="partner-list" />
-								</Flex>
-							</Layout>
-						</Fixed>
-						<Flex className="content">
-							<MessageList className="chat-form"/>
-						</Flex>
-					</Layout>
+				<Row>
+					<Col lg="3" sm="4">
+						<PartnerList className="partner-list"/>
+					</Col>
+					<Col lg="9" sm="8">
+						<MessageList className="chat-form"/>
+					</Col>
 					{/*<Chat />*/}
-				</Flex>
-			</Layout>
+				</Row>
+			</div>
 		);
 
 	}
