@@ -16,7 +16,7 @@ module.exports = mongoose.model('User', new Schema({
 	    required: "Password is Required",
 	    validate: [
 	      function(input) {
-	        return input.length >= 6;
+	        return input.length >= 4;
 	      },
 	      "Password should be longer."
 	    ]

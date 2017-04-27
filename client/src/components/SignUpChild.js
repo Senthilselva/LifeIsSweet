@@ -35,14 +35,13 @@ class SignUp extends Component {
           console.log(user);
           if(user.success){
             console.log(this.props);
-            this.props.history.push('/dashboard');
+            this.props.history.push('/signin');
           }
          })
     }
 
     _handleChange(event) {
         var newState = {};
-        //console.log(event.target.id +"   "+event.target.value);
         newState[event.target.id] = event.target.value; 
         this.setState(newState);   
     }

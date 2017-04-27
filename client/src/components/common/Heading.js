@@ -5,7 +5,7 @@ render (){
     return(
         <div className="App">
             <div className="jumbotron">   
-            <img sm={2} src={logo} className="App-logo" alt="logo" />     
+            <img src={logo} className="App-logo" alt="logo" />     
             <h2>{this.props.heading}</h2>
             </div>
         </div>

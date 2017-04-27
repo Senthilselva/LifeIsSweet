@@ -14,6 +14,7 @@ export const __createUser = (user) => {
 
 export const __getUser = (user) => {
 	console.log("createUser")
+
 	return fetch(`${baseUrl}/authenticate`, {
     method: 'POST',
     headers: {
@@ -33,4 +34,19 @@ export const __downLoadFile = (image,filename ) => {
     method: 'POST',
     body: formData
   }).then(res => res.json())
+}
+
+export const __loadUser = (username) => {
+  console.log("__loadUser");
+  let token = localStorage.getItem('token');
+  //token = "xyz"
+  var formData = new FormData();
+  formData.append('json', token);
+  console.log(token);
+  return fetch(`${baseUrl}/getUser/${username}/${token}`,{
+    headers: { 'x-access-token' : token },
+    method:'POST',
+    body: JSON.stringify(token)
+  })
+  .then(res=>res.json());
 }
