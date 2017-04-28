@@ -1,5 +1,6 @@
 import '../App.css';
 import React, { Component } from 'react';
+import { Container, Row, Column } from 'reactstrap';
 import PartnerDashboard from './dashboard/PartnerDashboard';
 import { __loadUser } from '../lib/LISservice'
 
@@ -24,7 +25,8 @@ class Dashboard extends Component {
                       <div className="App">
                           {/*<ChildView name = {this.props.match.params.name} />*/}
                           <PartnerDashboard heading="Child" name={this.props.match.params.name} />
-                          {/*<PartnerDashboard heading="Caretaker"/>*/}
+                          <PartnerDashboard heading="Caretaker"/>
+
                       </div>
                     );
 
@@ -40,6 +42,7 @@ class Dashboard extends Component {
     console.log("child param" + typeof this.props.match.params.child)
 
     return (this.props.match.params.child == "true" ? this._childview() : this._partnerview() );
+
   }
 }
 
