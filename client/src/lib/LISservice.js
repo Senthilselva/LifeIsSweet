@@ -43,8 +43,8 @@ export const __loadUser = (username) => {
   //token = "xyz"
   var formData = new FormData();
   formData.append('json', token);
-  console.log(token);
-  return fetch(`${baseUrl}/getUser/${username}/${token}`,{
+  //console.log(token);
+  return fetch(`${baseUrl}/getUser/${username}`,{
     headers: { 'x-access-token' : token },
     method:'POST',
     body: JSON.stringify(token)
@@ -53,3 +53,16 @@ export const __loadUser = (username) => {
 }
 
 //Get one child
+export const __loadChild = (username) => {
+  console.log("__loadChild");
+  let token = localStorage.getItem('token');
+  //token = "xyz"
+  var formData = new FormData();
+  formData.append('json', token);
+  return fetch(`${baseUrl}/getChild/${username}/${token}`,{
+    headers: { 'x-access-token' : token },
+    method:'POST',
+    body: JSON.stringify(token)
+  })
+  .then(res=>res.json());
+}

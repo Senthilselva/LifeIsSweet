@@ -131,7 +131,7 @@ router.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  console.log("token"+token);
+  // console.log("token"+token);
   // decode token
   if (token) {
 
@@ -158,12 +158,43 @@ router.use(function(req, res, next) {
   }
 });
 
-router. post('/getUser/:name/:token', function(req, res) {
+router. post('/getUser/:name/', function(req, res) {
+  console.log("getUSer")
   User.find({
     name: req.params.name   
   }, function(err, users) {
-    res.json(users);
-  });
+     if (err) throw err;
+     console.log("users" + users[0].child)
+     if (users[0].child == true){
+      Child.find({
+        name: users[0].name
+      }, function(err, childData){
+        if (err) throw err;
+        console.log("User :  \n");
+        console.log(users[0]);
+        console.log("Child: \n");
+        console.log(childData[0]);
+        res.json({
+          user: users[0],
+          child: childData[0]
+        });
+      });
+     } else {
+       CareTaker.find({
+        name: users[0].name
+      }, function(err, careTakerData){
+        if (err) throw err;
+        console.log("User :  \n");
+        console.log(users[0]);
+        console.log("Care Taker: \n");
+        console.log(careTakerData[0]);
+        res.json({
+          user: users[0],
+          careTaker: careTakerData[0]
+        });
+        });
+      }
+    });
 });   
 
 module.exports = router;
