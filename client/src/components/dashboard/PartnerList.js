@@ -29,7 +29,7 @@ class PartnerList extends Component {
 		return (
 			<div style={{background: '#2c3e50 ', color: '#FFF', width: 220}}>
 				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' defaultSelected='sales'>      
-					<Title> My Partners! </Title>
+					<Title><b> My Partners </b></Title>
 					{
 					this.state.partners.map(function(partner){
 						return(

@@ -1,4 +1,5 @@
 import '../App.css';
+import './Dashboard.css'
 import React, { Component } from 'react';
 import { Container, Row, Column } from 'reactstrap';
 import PartnerDashboard from './dashboard/PartnerDashboard';
