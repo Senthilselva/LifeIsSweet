@@ -127,13 +127,9 @@ router.post('/create', function(req, res) {
 
 router.use(function(req, res, next) {
 
-  console.log(res.body);
-  console.log(req.body);
-  console.log(req.params);
-  console.log(req.headers);
   console.log(req.headers['x-access-token']);
   // check header or url parameters or post parameters for token
-  var token = req.params.token || req.body.token || req.query.token || req.headers['x-access-token'];
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
   console.log("token"+token);
   // decode token
@@ -163,7 +159,9 @@ router.use(function(req, res, next) {
 });
 
 router. post('/getUser/:name/:token', function(req, res) {
-  User.find({}, function(err, users) {
+  User.find({
+    name: req.params.name   
+  }, function(err, users) {
     res.json(users);
   });
 });   

@@ -36,6 +36,7 @@ export const __downLoadFile = (image,filename ) => {
   }).then(res => res.json())
 }
 
+//user info
 export const __loadUser = (username) => {
   console.log("__loadUser");
   let token = localStorage.getItem('token');
@@ -50,3 +51,5 @@ export const __loadUser = (username) => {
   })
   .then(res=>res.json());
 }
+
+//Get one child
