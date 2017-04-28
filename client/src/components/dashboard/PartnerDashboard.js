@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import PartnerList from './PartnerList';
 import MessageList from './MessageList';
+import ChatForm from './ChatForm';
 
 import '../Dashboard.css';
 import { Flex, Layout, Fixed } from 'react-layout-pane';

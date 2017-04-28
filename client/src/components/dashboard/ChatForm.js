@@ -1,6 +1,6 @@
 import '../../App.css';
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Form } from 'reactstrap';
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 
 class ChatForm extends Component {
@@ -8,11 +8,7 @@ class ChatForm extends Component {
 		super(props);
 
 		this.state = {
-			messages: [
-				{ id: 1, text: "message 1" },
-				{ id: 2, text: "message 2" },
-				{ id: 3, text: "message 3" },
-			]
+			text: ""
 		}
 	}
 	
@@ -20,15 +16,7 @@ class ChatForm extends Component {
 
 		return (
 			<div className="App">
-				<ListGroup>
-					{
-						this.state.messages.map(function(message){
-							return(
-								<ListGroupItem key={message.id}>{message.text}</ListGroupItem>
-							)
-						})
-					}
-				</ListGroup>
+				<Form />
 			</div>
 		);
 
