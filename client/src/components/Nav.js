@@ -47,6 +47,7 @@ export default class Example extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+        {this.props.children}
       </div>
     );
   }
