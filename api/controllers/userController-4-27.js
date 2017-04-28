@@ -48,21 +48,36 @@ router.post('/authenticate', function(req, res) {
           expiresIn: 1440 // expires in 24 hours
         });
 
-        // return the information including token as JSON
-        res.json({
-          user,
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-      }   
+          success = true;
+          message = 'Enjoy your token!';
+          token = token;
 
+        if(user.child){
+          Child.findOne({
+            name: req.body.name
+          }, function(err, childData){
+             if (err) throw err;
+             var sendMess = { success, message, token, user, childData }
+             console.log(sendMess)
+             res.json(sendMess);
+          });
+        } else {
+          CareTaker.findOne({
+            name: req.body.name
+          }, function(err, caretakerData){
+             if (err) throw err;
+             var sendMess = { success, message, token, user, caretakerData }
+             console.log(sendMess)
+             res.json(sendMess);
+          });
+        }
+      }   
     }
 
   });
 });
 
-router.post('/create', function(req, res) {
+router.post('/create',  function(req, res) {
   console.log("creating")
   console.log(req.body);
      // find the user
@@ -98,8 +113,7 @@ router.post('/create', function(req, res) {
                   res.json({ err: err.errors.message });
                 }
                 else{
-                  res.json({ success : true, 
-                              childData });
+                  res.json({ success : true });
                 }
               }); 
             } else {
@@ -114,8 +128,7 @@ router.post('/create', function(req, res) {
                   res.json({ err: err.errors.message });
                 }
                 else{
-                  res.json({ success:true,
-                             careTaker });
+                  res.json({ success:true });
                 }
               }); //newCareTaker
             }
@@ -125,13 +138,49 @@ router.post('/create', function(req, res) {
   })
 });
 
+router.get('/getUser/:name', function(req, res){
+  
+  let name = req.params.name
+  User.findOne({
+    name
+  }, function(err, user) {
+
+    if (err) throw err;
+    console.log("uuuuuuuuuuuuuuuuuuuuuser");
+    console.log(user);
+
+    if (!user) {
+      res.json({ success: false, message: 'User name did not exist' });
+    } else {
+      console.log(newUser);
+      if(user.child){
+          Child.findOne({
+            name: req.body.name
+          }, function(err, childData){
+             if (err) throw err;
+             var sendMess = { success, message, token, user, childData }
+             console.log(sendMess)
+             res.json(sendMess);
+          });
+        } else {
+          CareTaker.findOne({
+            name: req.body.name
+          }, function(err, caretakerData){
+             if (err) throw err;
+             var sendMess = { success, message, token, user, caretakerData }
+             console.log(sendMess)
+             res.json(sendMess);
+          });
+        }
+    }
+  });
+});
+
 router.use(function(req, res, next) {
 
-  console.log(req.headers['x-access-token']);
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  console.log("token"+token);
   // decode token
   if (token) {
 
@@ -157,13 +206,5 @@ router.use(function(req, res, next) {
     
   }
 });
-
-router. post('/getUser/:name/:token', function(req, res) {
-  User.find({
-    name: req.params.name   
-  }, function(err, users) {
-    res.json(users);
-  });
-});   
 
 module.exports = router;

@@ -6,6 +6,7 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
+var path        = require('path');
 
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
@@ -88,7 +89,15 @@ app.post('/uploadUserImage/:name', function (req, res) {
     res.send(req.body.photo);
 });
 
+app.get("/photos/:photo", function(req, res) {
+  console.log(req.params.photo);
+  res.sendFile(path.join(__dirname, './uploads/photos/27_profile.js'));
+});
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 // =======================
 // start the server ======
 // =======================

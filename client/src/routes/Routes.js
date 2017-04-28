@@ -21,7 +21,7 @@ const Routes= (props) => (
 		<Route path="/signupchild" component={SignUpChild} />
 		<Route path="/signupcaretaker" component={SignUpCareTaker} />
 		<Route path="/signin" component={SignIn} />
-		<Route path="/dashboard" component={Dashboard} />
+		<Route path="/dashboard/:name/:child" component={Dashboard} />
 		<Route path="/downloadfile" component={DownloadFile} />
 	</div>
 </Router>

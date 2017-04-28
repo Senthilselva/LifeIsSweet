@@ -13,6 +13,7 @@ class SignIn extends Component {
 	this.state = {
 	    name:"",
 	    password:"",
+      child:1,
       redirect:false
 	};
 
@@ -29,6 +30,9 @@ class SignIn extends Component {
          .then(userData => {
           console.log(userData);
           if(userData.success){
+            console.log(userData.user)
+            localStorage.setItem("token",userData.token);
+            this.setState({ child:userData.user.child })
             this.setState({redirect:true})
           }
          })
@@ -83,7 +87,8 @@ render() {
 </div>
 
       if(this.state.redirect) {
-        return <Redirect to='/dashboard'/>;
+        let url = "/dashboard/"+this.state.name+"/"+this.state.child;
+        return <Redirect to={url} />;
       } else
 
       return (<div> {signInForm} </div>);
