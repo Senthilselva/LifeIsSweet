@@ -7,6 +7,7 @@ import MessageList from './MessageList';
 
 import '../Dashboard.css';
 import { Flex, Layout, Fixed } from 'react-layout-pane';
+import Nav from '../Nav.js'
 
 class PartnerDashboard extends Component {
 	constructor(props) {
@@ -21,21 +22,19 @@ class PartnerDashboard extends Component {
 
 		return (
 			<Layout type="column">
+				<Nav />
 				<Heading heading={this.props.heading} />
 				<Flex>
 					<Layout type="row">
 						<Fixed className="sidebar">
-							<Layout type="column">
-								<Fixed>
-									My Partners
-								</Fixed>
+							<Layout type="column" className="partner-list">
 								<Flex>
-									<PartnerList className="partner-list" />
+									<PartnerList />
 								</Flex>
 							</Layout>
 						</Fixed>
-						<Flex className="content">
-							<MessageList className="chat-form"/>
+						<Flex className="content message-list">
+							<MessageList />
 						</Flex>
 					</Layout>
 					{/*<Chat />*/}

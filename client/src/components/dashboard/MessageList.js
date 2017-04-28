@@ -8,9 +8,12 @@ class MessageList extends Component {
 
 		this.state = {
 			messages: [
-				{ id: 1, text: "message 11" },
-				{ id: 2, text: "message 2" },
-				{ id: 3, text: "message 3" },
+				{ id: 1, text: "message 1 jajfaoef   aeflkj  ajf" },
+				{ id: 2, text: "message 2 asfjoa  aljkef ajiejjf" },
+				{ id: 3, text: "message 3 afjaiew fjlasifj" },
+				{ id: 4, text: "message 4 afiijfai fajiefia faiej;feofj" },
+				{ id: 5, text: "message 5 this is s aejagiaemessage" },
+				{ id: 6, text: "message 6 the lsate madaef" },
 			]
 		}
 	}
@@ -18,17 +21,15 @@ class MessageList extends Component {
 	render() {
 
 		return (
-			<div className="App">
-				<ListGroup>
-					{
-						this.state.messages.map(function(message){
-							return(
-								<ListGroupItem key={message.id}>{message.text}</ListGroupItem>
-							)
-						})
-					}
-				</ListGroup>
-			</div>
+			<ListGroup>
+				{
+					this.state.messages.map(function(message){
+						return(
+							<ListGroupItem key={message.id}>{message.text}</ListGroupItem>
+						)
+					})
+				}
+			</ListGroup>
 		);
 
 	}
