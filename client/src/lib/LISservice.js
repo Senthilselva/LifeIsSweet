@@ -28,8 +28,12 @@ export const __getUser = (user) => {
 export const __downLoadFile = (image,filename ) => {
   console.log("image");
   console.log(image);
+  console.log(filename)
   var formData = new FormData();
+  //need to be in this order for multer to detect the file name
+  formData.append('filename', filename);  
   formData.append('photo', image);
+  
   return fetch(`/uploadUserImage/${filename}`, {
     method: 'POST',
     body: formData

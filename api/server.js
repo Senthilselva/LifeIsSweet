@@ -64,6 +64,8 @@ var storage = multer.diskStorage({
         destination: './public/users',
         filename: function (req, file, cb) {
           let ext
+          console.log("body");
+          console.log(req.body);
           console.log(file.mimetype)
             switch (file.mimetype) {
                 case 'image/jpeg':
@@ -73,12 +75,15 @@ var storage = multer.diskStorage({
                     ext = '.png';
                     break;
             }
-            cb(null, file.originalname + ext);
+            // cb(null, file.originalname + ext);
+            cb(null, req.body.filename + ext);
+
         }
     });
 
 var upload = multer({storage: storage});
 
+//when ever it sees File
 app.use(upload.single('photo'));
 
 app.post('/uploadUserImage/:name', function (req, res) {

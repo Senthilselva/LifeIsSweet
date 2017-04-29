@@ -20,7 +20,7 @@ class DownloadFile extends Component {
         event.preventDefault();
         console.log("CLICK");
         
-        __downLoadFile(this.state.file, this.state.name)
+        __downLoadFile(this.state.file, this.props.filename)
          .then(data => {
           console.log(data);
         });
