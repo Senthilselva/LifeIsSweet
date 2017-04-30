@@ -28,8 +28,12 @@ export const __getUser = (user) => {
 export const __downLoadFile = (image,filename ) => {
   console.log("image");
   console.log(image);
+  console.log(filename)
   var formData = new FormData();
+  //need to be in this order for multer to detect the file name
+  formData.append('filename', filename);  
   formData.append('photo', image);
+  
   return fetch(`/uploadUserImage/${filename}`, {
     method: 'POST',
     body: formData
@@ -56,10 +60,34 @@ export const __loadUser = (username) => {
 export const __loadChild = (username) => {
   console.log("__loadChild");
   let token = localStorage.getItem('token');
-  //token = "xyz"
+  
   var formData = new FormData();
   formData.append('json', token);
   return fetch(`${baseUrl}/getChild/${username}/${token}`,{
+    headers: { 'x-access-token' : token },
+    method:'POST',
+    body: JSON.stringify(token)
+  })
+  .then(res=>res.json());
+}
+
+export const __getAllChildren = () => {
+  console.log("__getAllChildren");
+  let token = localStorage.getItem('token');
+
+  return fetch(`${baseUrl}/getChildren/`,{
+    headers: { 'x-access-token' : token },
+    method:'POST',
+    body: JSON.stringify(token)
+  })
+  .then(res=>res.json());
+}
+
+export const __addPartners = (username, partner) =>{
+  console.log("__addPartners");
+  let token = localStorage.getItem('token');
+  
+  return fetch(`${baseUrl}/getChildren/${username}/${token}`,{
     headers: { 'x-access-token' : token },
     method:'POST',
     body: JSON.stringify(token)

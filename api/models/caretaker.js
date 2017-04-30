@@ -14,15 +14,8 @@ var CareTakerSchema = new Schema({
   },
   phone: {
     type: String
-  },
-  userCreated: {
-    type: Date,
-    default: Date.now
-  },
-  // lastUpdated: a date type entry
-  lastUpdated: { 
-    type: Date
   }
+  
 });
 
 

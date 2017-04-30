@@ -38,7 +38,8 @@ router.post('/authenticate', function(req, res) {
     } else if (user) {
 
       // check if password matches
-      if (user.password != req.body.password) {
+      if (user.password != req.body.password) 
+      {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
@@ -56,9 +57,7 @@ router.post('/authenticate', function(req, res) {
           token: token
         });
       }   
-
     }
-
   });
 });
 
@@ -158,6 +157,7 @@ router.use(function(req, res, next) {
   }
 });
 
+/*
 router. post('/getUser/:name/', function(req, res) {
   console.log("getUSer")
   User.find({
@@ -196,5 +196,28 @@ router. post('/getUser/:name/', function(req, res) {
       }
     });
 });   
+*/
+
+router. post('/getUser/:name/', function(req, res) {
+  console.log("getUSer")
+  User.find({  name: req.params.name })
+    .populate("children")
+    .populate("caretaker")
+    .exec(function(err,doc){
+      if(err) throw err;
+      res.json(doc)
+    })
+});
+
+
+
+router.post('/getChildren/',function(req,res) {
+  User.find({
+    child : true   
+  },function(err, data){
+    if (err) throw err;
+    res.json(data);
+  });
+})
 
 module.exports = router;

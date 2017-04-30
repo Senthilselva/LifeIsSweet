@@ -30,7 +30,10 @@ var childSchema = new Schema({
   },
   dinnerbolus : {
     type : Number 
-  } 
+  },
+  chat : [{
+    type: String
+  }] 
 });
 
 
