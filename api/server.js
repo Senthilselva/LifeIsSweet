@@ -338,5 +338,18 @@ app.get("/photos/:photo", function(req, res) {
 // =======================
 // start the server ======
 // =======================
-app.listen(port);
+const server = app.listen(port);
 console.log('Magic happens at http://localhost:' + port);
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {  
+  console.log('a user connected');
+  socket.on('message', (data)=>{
+    console.log("user message OOOOOOOOOOOOOOOOOO")
+    console.log(data);
+  })
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});

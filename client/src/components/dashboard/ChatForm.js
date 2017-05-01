@@ -1,7 +1,9 @@
 import '../../App.css';
 import React, { Component } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import {__writeMessage} from '../../lib/LISservice'
+import {__writeMessage} from '../../lib/LISservice';
+const io = require('socket.io-client')  
+
 class ChatForm extends Component {
 	constructor(props) {
 		super(props);
@@ -23,6 +25,10 @@ class ChatForm extends Component {
         	.then(data => {
         		console.log("Data:");
         		console.log(data);
+                const socket = io()
+                socket.emit('message',data);
+                this.setState({message:""});
+
         	})
         }
     }
