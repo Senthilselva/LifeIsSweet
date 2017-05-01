@@ -209,8 +209,6 @@ router. post('/getUser/:name/', function(req, res) {
     })
 });
 
-
-
 router.post('/getChildren/',function(req,res) {
   User.find({
     child : true   
@@ -218,6 +216,20 @@ router.post('/getChildren/',function(req,res) {
     if (err) throw err;
     res.json(data);
   });
+})
+
+router.post('/getChild/:id',function(req,res) {
+  console.log("getChild")
+  console.log(req.params.id)
+
+  Child.findOne({
+    '_id':req.params.id   
+  },function(err, data){
+    if (err) throw err;
+    console.log(data)
+    res.json(data);
+  });
+  
 })
 
 module.exports = router;

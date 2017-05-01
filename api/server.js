@@ -66,13 +66,13 @@ app.get('/setup', function(req, res) {
   var senthil = new User({ 
     name: 'Senthil', 
     password: 'password',
-    child: true 
+    child: false 
   });
 
   var stef = new User({ 
     name: 'Stefanie', 
     password: 'password',
-    child: true 
+    child: false 
   });
   // save the sample user
   nick.save(function(err) {

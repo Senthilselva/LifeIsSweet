@@ -7,16 +7,14 @@ class PartnerList extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			partners: [ 
-				{ id: 1, name: "John" }, 
-				{ id: 2, name: "Paul" }, 
-				{ id: 3, name: "George" }, 
-				{ id: 4, name: "Ringo" }
-			]
-		}
+		
+		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 
+	_handleSubmit(id) {   
+        console.log("click" + id);
+        this.props._changePartner(id)
+    }
 	//specify the base color/background of the parent container if needed 
 	_sideNav() {
 		const Title = styled.div`
@@ -25,15 +23,15 @@ class PartnerList extends Component {
 		    color: lightblue;
 		    background: grey;    
 		`;
-
+		
 		return (
 			<div style={{background: '#2c3e50 ', color: '#FFF', width: 220}}>
-				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' defaultSelected='sales'>      
+				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' onItemSelection={(id) => {this._handleSubmit(id)}}>      
 					<Title><b> My Partners </b></Title>
 					{
-					this.state.partners.map(function(partner){
+					this.props.partners.map(function(partner){
 						return(
-							<Nav key={partner.id} id={partner.id}>
+							<Nav key={partner._id} id={partner._id}>
 								<NavText>{partner.name}</NavText>
 							</Nav>
 						)
@@ -43,9 +41,13 @@ class PartnerList extends Component {
 			</div>
 		)
 	}
+
+	_emptySideNav(){
+		return(<div> Empty </div> )
+	}
 	
 	render() {
-
+		if(this.props.partners.length)
 		return (
 			<div>
 				{this._sideNav()}
@@ -53,6 +55,10 @@ class PartnerList extends Component {
 		);
 
 	}
+}
+
+PartnerList.propTypes = {
+  partners: React.PropTypes.array
 }
 
 export default PartnerList;
