@@ -6,15 +6,7 @@ import styled from 'styled-components';
 class PartnerList extends Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			partners: [ 
-				{ id: 1, name: "John" }, 
-				{ id: 2, name: "Paul" }, 
-				{ id: 3, name: "George" }, 
-				{ id: 4, name: "Ringo" }
-			]
-		}
+		
 	}
 
 	//specify the base color/background of the parent container if needed 
@@ -31,7 +23,7 @@ class PartnerList extends Component {
 				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' defaultSelected='sales'>      
 					<Title><b> My Partners </b></Title>
 					{
-					this.state.partners.map(function(partner){
+					this.props.partners.map(function(partner){
 						return(
 							<Nav key={partner.id} id={partner.id}>
 								<NavText>{partner.name}</NavText>
@@ -43,9 +35,13 @@ class PartnerList extends Component {
 			</div>
 		)
 	}
+
+	_emptySideNav(){
+		return(<div> Empty </div> )
+	}
 	
 	render() {
-
+		if(this.props.partners.length)
 		return (
 			<div>
 				{this._sideNav()}
@@ -53,6 +49,10 @@ class PartnerList extends Component {
 		);
 
 	}
+}
+
+PartnerList.propTypes = {
+  partners: React.PropTypes.array
 }
 
 export default PartnerList;
