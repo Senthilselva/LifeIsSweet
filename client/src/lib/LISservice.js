@@ -82,3 +82,18 @@ export const __getAllChildren = () => {
   })
   .then(res=>res.json());
 }
+         
+export const __writeMessage = (partnerId,message) => {
+
+  console.log("__writeMessage");
+
+  let token = localStorage.getItem('token');
+
+  return fetch(`${baseUrl}/writemsg/${partnerId}/${message}`,{
+    headers: { 'x-access-token' : token },
+    method:'POST',
+    body: JSON.stringify(token)
+  })
+  .then(res=>res.json());
+
+} 

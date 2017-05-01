@@ -1,23 +1,61 @@
 import '../../App.css';
 import React, { Component } from 'react';
-import { Form } from 'reactstrap';
-import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
-
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {__writeMessage} from '../../lib/LISservice'
 class ChatForm extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			text: ""
+			message: ""
 		}
+
+		this._handleChange = this._handleChange.bind(this);
+	    this._handleSubmit = this._handleSubmit.bind(this);
 	}
+
+	 _handleSubmit(event) {
+        event.preventDefault();
+        console.log("CLICK");
+        console.log(this.props.partnerId)
+        if(this.state.message != ""){
+        	__writeMessage(this.props.partnerId,this.state.message)
+        	.then(data => {
+        		console.log("Data:");
+        		console.log(data);
+        	})
+        }
+    }
 	
+	_handleChange(event) {
+        var newState = {};
+        //console.log(event.target.id +"   "+event.target.value);
+        newState[event.target.id] = event.target.value; 
+        this.setState(newState);   
+    }
+
 	render() {
 
 		return (
-			<div className="App">
-				<Form />
-			</div>
+            <div>
+            <Form onSubmit={this._handleSubmit}>
+                    <FormGroup row>
+                      <Label for="" sm={2}>Message</Label>
+                      <Col sm={6}>
+                        <Input type="text" 
+                                name="message" 
+                                id="message" 
+                                onChange={this._handleChange}
+                                placeholder="enter details" />
+                      </Col>
+                   
+                      <Col sm={{ size: 10, offset: 2 }}>
+                        <Button>Submit</Button>
+                      </Col>
+                    </FormGroup>
+
+                  </Form>
+                </div>
 		);
 
 	}
