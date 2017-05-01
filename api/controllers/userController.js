@@ -232,4 +232,18 @@ router.post('/getChild/:id',function(req,res) {
   
 })
 
+router.post('/writemsg/:id/:message',function(req,res) {
+  console.log("writemMsg")
+  console.log(req.params.id)
+  console.log(req.params.message)
+
+  Child.findOneAndUpdate({ '_id':req.params.id },
+    { $push: { "chat": req.params.message } },{ new: true }, function(err, data){
+    if (err) throw err;
+    console.log(data)
+    res.json(data);
+  });
+  
+})
+
 module.exports = router;

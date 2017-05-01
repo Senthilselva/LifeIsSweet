@@ -67,7 +67,10 @@ class PartnerDashboard extends Component {
 						</Fixed>
 						<Flex className="content message-list">
 						{this.state.selectedPartnerId != "" ? 
-							(<MessageList partnerId={this.state.selectedPartnerId}/>) :
+							(<div>
+								<MessageList partnerId={this.state.selectedPartnerId}/>
+								<ChatForm partnerId={this.state.selectedPartnerId} />
+							</div>) :
 							(<div> </div>)
 						}
 						</Flex>
