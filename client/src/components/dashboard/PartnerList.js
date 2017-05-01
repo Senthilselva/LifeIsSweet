@@ -7,8 +7,13 @@ class PartnerList extends Component {
 	constructor(props) {
 		super(props);
 		
+		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 
+	_handleSubmit(id) {
+        
+        console.log("click" + id);
+    }
 	//specify the base color/background of the parent container if needed 
 	_sideNav() {
 		const Title = styled.div`
@@ -17,15 +22,15 @@ class PartnerList extends Component {
 		    color: lightblue;
 		    background: grey;    
 		`;
-
+		
 		return (
 			<div style={{background: '#2c3e50 ', color: '#FFF', width: 220}}>
-				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' defaultSelected='sales'>      
+				<SideNav highlightColor='#E91E63 ' highlightBgColor='#00bcd4 ' onItemSelection={(id) => {this._handleSubmit(id)}}>      
 					<Title><b> My Partners </b></Title>
 					{
 					this.props.partners.map(function(partner){
 						return(
-							<Nav key={partner.id} id={partner.id}>
+							<Nav key={partner._id} id={partner._id}>
 								<NavText>{partner.name}</NavText>
 							</Nav>
 						)
