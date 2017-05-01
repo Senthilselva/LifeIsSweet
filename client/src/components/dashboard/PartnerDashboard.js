@@ -18,8 +18,15 @@ class PartnerDashboard extends Component {
 
 		this.state = {
 			heading: "", // String indicating if user is a caretaker or child
-			userData : ""		
+			userData : "",		
+			selectedPartnerId : ""
 		}
+
+		this._changePartner = this._changePartner.bind(this)
+	}
+
+	_changePartner(id){
+		this.setState({selectedPartnerId : id})
 	}
 
 	componentWillMount() {
@@ -49,7 +56,8 @@ class PartnerDashboard extends Component {
 							<Layout type="column" className="partner-list">
 								<Flex>
 									{this.state.userData.children ? (
-									<PartnerList partners={this.state.userData.children}/>
+									<PartnerList partners={this.state.userData.children} 
+													_changePartner = {this._changePartner}/>
 									) : (
 									<div></div>
 									)
@@ -58,7 +66,10 @@ class PartnerDashboard extends Component {
 							</Layout>
 						</Fixed>
 						<Flex className="content message-list">
-							<MessageList />
+						{this.state.selectedPartnerId != "" ? 
+							(<MessageList partnerId={this.state.selectedPartnerId}/>) :
+							(<div> </div>)
+						}
 						</Flex>
 					</Layout>
 					{/*<Chat />*/}

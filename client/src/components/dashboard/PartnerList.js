@@ -6,13 +6,14 @@ import styled from 'styled-components';
 class PartnerList extends Component {
 	constructor(props) {
 		super(props);
+
 		
 		this._handleSubmit = this._handleSubmit.bind(this);
 	}
 
-	_handleSubmit(id) {
-        
+	_handleSubmit(id) {   
         console.log("click" + id);
+        this.props._changePartner(id)
     }
 	//specify the base color/background of the parent container if needed 
 	_sideNav() {
