@@ -47,7 +47,6 @@ class PartnerList extends Component {
 	}
 	
 	render() {
-		if(this.props.partners.length)
 		return (
 			<div>
 				{this._sideNav()}
