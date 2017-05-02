@@ -2,7 +2,9 @@ import '../../App.css';
 import React, { Component } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {__writeMessage} from '../../lib/LISservice';
-const io = require('socket.io-client')  
+const io = require('socket.io-client');
+const socket = io()
+
 
 class ChatForm extends Component {
 	constructor(props) {
@@ -16,28 +18,40 @@ class ChatForm extends Component {
 	    this._handleSubmit = this._handleSubmit.bind(this);
 	}
 
-	 _handleSubmit(event) {
+	_handleSubmit(event) {
         event.preventDefault();
-        console.log("CLICK");
-        console.log(this.props.partnerId)
         if(this.state.message != ""){
+
         	__writeMessage(this.props.partnerId,this.state.message)
         	.then(data => {
-        		console.log("Data:");
-        		console.log(data);
-                const socket = io()
                 socket.emit('message',data);
-                this.setState({message:""});
+                this.setState({message:""});              
+        	});
 
-        	})
         }
     }
 	
 	_handleChange(event) {
         var newState = {};
-        //console.log(event.target.id +"   "+event.target.value);
         newState[event.target.id] = event.target.value; 
         this.setState(newState);   
+    }
+
+    componentDidMount(){
+        console.log(this.props.partnerId);
+        socket.on(this.props.partnerId, (data)=>{
+                    console.log("OOOOOOOOOOOOOOOOOO")
+                    
+                })
+    }
+
+    componentWillReceiveProps(){
+        let that =this;
+        console.log(this.props.partnerId);
+        socket.on(this.props.partnerId, (data)=>{
+                    console.log("OOOOOOOOOOOOOOOOOO")
+                     console.log(that.props.partnerId)
+                })
     }
 
 	render() {

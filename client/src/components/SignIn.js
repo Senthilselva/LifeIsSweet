@@ -23,12 +23,12 @@ class SignIn extends Component {
 
     _handleSubmit(event) {
         event.preventDefault();
-        console.log("CLICK");
+        //console.log("CLICK");
         var user = this.state;
         
         __getUser(user)
          .then(userData => {
-          console.log(userData);
+          //console.log(userData);
           if(userData.success){
             console.log(userData.user)
             localStorage.setItem("token",userData.token);
