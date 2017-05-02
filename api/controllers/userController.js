@@ -62,8 +62,6 @@ router.post('/authenticate', function(req, res) {
 });
 
 router.post('/create', function(req, res) {
-  console.log("creating")
-  console.log(req.body);
      // find the user
      let newUser =  new User(req.body);
   User.findOne({
@@ -74,15 +72,13 @@ router.post('/create', function(req, res) {
     if (user) {
       res.json({ success: false, message: 'User name already exist' });
     } else {
-      console.log(newUser);
       
       newUser.save(function(err, data) {
         if (err) {
           console.log(err.errors)
           res.json({ err: err.errors.message });
         } else {
-          console.log(data)
-          console.log('User saved successfully');
+          //console.log('User saved successfully');
           //if the user is a child
             if(data.child){
               let newChild = new Child({});
@@ -93,7 +89,7 @@ router.post('/create', function(req, res) {
 
               newChild.save(function(err,childData){
                 if (err){
-                  console.log(err.errors)
+                  //console.log(err.errors)
                   res.json({ err: err.errors.message });
                 }
                 else{
@@ -109,7 +105,7 @@ router.post('/create', function(req, res) {
 
               newCareTaker.save(function(err,careTaker){
                 if(err){
-                  console.log(err.errors)
+                 // console.log(err.errors)
                   res.json({ err: err.errors.message });
                 }
                 else{
@@ -130,7 +126,6 @@ router.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  // console.log("token"+token);
   // decode token
   if (token) {
 
@@ -156,47 +151,6 @@ router.use(function(req, res, next) {
     
   }
 });
-
-/*
-router. post('/getUser/:name/', function(req, res) {
-  console.log("getUSer")
-  User.find({
-    name: req.params.name   
-  }, function(err, users) {
-     if (err) throw err;
-     console.log("users" + users[0].child)
-     if (users[0].child == true){
-      Child.find({
-        name: users[0].name
-      }, function(err, childData){
-        if (err) throw err;
-        console.log("User :  \n");
-        console.log(users[0]);
-        console.log("Child: \n");
-        console.log(childData[0]);
-        res.json({
-          user: users[0],
-          child: childData[0]
-        });
-      });
-     } else {
-       CareTaker.find({
-        name: users[0].name
-      }, function(err, careTakerData){
-        if (err) throw err;
-        console.log("User :  \n");
-        console.log(users[0]);
-        console.log("Care Taker: \n");
-        console.log(careTakerData[0]);
-        res.json({
-          user: users[0],
-          careTaker: careTakerData[0]
-        });
-        });
-      }
-    });
-});   
-*/
 
 router. post('/getUser/:name/', function(req, res) {
   console.log("getUSer")
@@ -233,14 +187,10 @@ router.post('/getChild/:id',function(req,res) {
 })
 
 router.post('/writemsg/:id/:message',function(req,res) {
-  console.log("writemMsg")
-  console.log(req.params.id)
-  console.log(req.params.message)
-
+  
   Child.findOneAndUpdate({ '_id':req.params.id },
     { $push: { "chat": req.params.message } },{ new: true }, function(err, data){
     if (err) throw err;
-    console.log(data)
     res.json(data);
   });
   

@@ -1,7 +1,6 @@
 import '../../App.css';
 import Heading from '../common/Heading';
 import React, { Component } from 'react';
-//import { Container, Row, Col } from 'reactstrap';
 import PartnerList from './PartnerList';
 import MessageList from './MessageList';
 import ChatForm from './ChatForm';
@@ -19,10 +18,12 @@ class PartnerDashboard extends Component {
 		this.state = {
 			heading: "", // String indicating if user is a caretaker or child
 			userData : "",		
-			selectedPartnerId : ""
+			selectedPartnerId : "",
+			newMessage: 0
 		}
 
-		this._changePartner = this._changePartner.bind(this)
+		this._changePartner = this._changePartner.bind(this);
+		this._addNewMessage = this._addNewMessage.bind(this);
 	}
 
 	_changePartner(id){
@@ -30,22 +31,19 @@ class PartnerDashboard extends Component {
 	}
 
 	componentWillMount() {
-		console.log("componentDidMount"+this.props.name)
     __loadUser(this.props.name)
       .then(userData => { 
-        console.log("User Data:")
-       // console.log(userData[0].children)
         var userData =  userData[0];
-        console.log(userData);
         this.setState({userData:userData});
-        console.log("Senthil" + JSON.stringify(this.state.userData));
-
       });
     }
 	
+	_addNewMessage() {
+		let count = this.setState.newMessage;
+		this.setState({ newMessage : count })
+	}
+
 	render() {
-		console.log("this.state.userData.children");
-		console.log(this.state.userData.children)
 		return (
 			<Layout type="column">
 				<Nav />
@@ -57,7 +55,7 @@ class PartnerDashboard extends Component {
 								<Flex>
 									{this.state.userData.children ? (
 									<PartnerList partners={this.state.userData.children} 
-													_changePartner = {this._changePartner}/>
+													_changePartner={this._changePartner}/>
 									) : (
 									<div></div>
 									)
@@ -66,9 +64,10 @@ class PartnerDashboard extends Component {
 							</Layout>
 						</Fixed>
 						<Flex className="content message-list">
-						{this.state.selectedPartnerId != "" ? 
+						{this.state.selectedPartnerId!="" ? 
 							(<div>
-								<MessageList partnerId={this.state.selectedPartnerId}/>
+								<MessageList partnerId={this.state.selectedPartnerId}
+									         _addNewMessage={this._addNewMessage} />
 								<ChatForm partnerId={this.state.selectedPartnerId} />
 							</div>) :
 							(<div> </div>)

@@ -1,6 +1,5 @@
 import '../App.css';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import Heading from './common/Heading';
