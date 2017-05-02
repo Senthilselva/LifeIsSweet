@@ -41,7 +41,7 @@ class ChatForm extends Component {
         console.log(this.props.partnerId);
         socket.on(this.props.partnerId, (data)=>{
                     console.log("OOOOOOOOOOOOOOOOOO")
-                    
+
                 })
     }
 
@@ -50,7 +50,6 @@ class ChatForm extends Component {
         console.log(this.props.partnerId);
         socket.on(this.props.partnerId, (data)=>{
                     console.log("OOOOOOOOOOOOOOOOOO")
-                     console.log(that.props.partnerId)
                 })
     }
 
